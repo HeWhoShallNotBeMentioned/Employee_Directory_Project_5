@@ -23,17 +23,20 @@ body {
   padding: 5px;
 }
 
-.firstName {
+.name {
   font-weight: bold;
 }
 
 .email {
   font-size: .7em;
-  padding-left: 10px;
   font-weight: lighter;
+  padding-left: 10px;
 }
 
-.city {
+.city,
+.phoneNumber,
+.address,
+.birthday {
   font-size: .7em;
   font-weight: lighter;
 }
