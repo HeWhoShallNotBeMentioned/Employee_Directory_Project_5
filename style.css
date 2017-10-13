@@ -1,6 +1,39 @@
 /*font-family: 'Shadows Into Light', cursive;*/
 
+body {
+  background-color: white;
+}
 #header {
   font-family: 'Rye', cursive;
-  margin-top: 30px;
+  margin: 30px 0;
+}
+
+.person {
+  background-color: #F8F8FF;
+  border: solid lightgrey 1px;
+  margin-left: 6%;
+  margin-bottom: 4%;
+  padding: 20px;
+  border-radius: 7px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.thumbnail {
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.firstName {
+  font-weight: bold;
+}
+
+.email {
+  font-size: .7em;
+  padding-left: 10px;
+  font-weight: lighter;
+}
+
+.city {
+  font-size: .7em;
+  font-weight: lighter;
 }
