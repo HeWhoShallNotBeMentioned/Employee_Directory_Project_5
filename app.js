@@ -5,7 +5,11 @@
   let data2 = {};
   let id;
   function createModal(e){
-     id = event.target.id;
+     //id = event.target.id;
+     //console.log("e.target ", e.target.className);
+     let testId = e.target.className;
+     id = testId.split(" ")[1];
+     console.log("testId2  ", id);
      console.log("id inside create modal " + id);
      modalBody(id);
       $('#myModal').modal();
@@ -15,13 +19,13 @@
     data2 = data.results;
     var addHtml = '';
       data.results.forEach(function (item, index, arr) {
-        addHtml += '<div class="col-md-3 row person" id="' + index + '" data-toggle="modal" data-target="#exampleModal">';
-        addHtml += '<div><img class="thumbnail" src="' + data.results[index].picture.thumbnail + '"></div>';
+        addHtml += '<div class="col-md-3 ' + index + ' row person" id="' + index + '" data-toggle="modal" data-target="#exampleModal">';
+        addHtml += '<div><img class="thumbnail ' + index + '" src="' + data.results[index].picture.thumbnail + '"></div>';
         addHtml += '<div>';
-        addHtml += '<span class="name">' + data.results[index].name.first + ' ';
+        addHtml += '<span class="name ' + index + '">' + data.results[index].name.first + ' ';
         addHtml +=  data.results[index].name.last + '</span>';
-        addHtml += '<div class="email">' + data.results[index].email + '</div>';
-        addHtml += '<div class="city">' + data.results[index].location.city + '</div></div>';
+        addHtml += '<div class="email ' + index + '">' + data.results[index].email + '</div>';
+        addHtml += '<div class="city ' + index + '">' + data.results[index].location.city + '</div></div>';
         addHtml += '</div>';
       });
         document.getElementById('cards').innerHTML = addHtml;
@@ -34,10 +38,12 @@
 
   function previousModal() {
     console.log("inside previousModal");
+    console.log("id previousModal before parseInt ", id);
     let id2 = parseInt(id);
     id = id2;
-    console.log("data2.length ", data2.length);
-    if (id >= 1 && id <= (data2.length -1)) {
+    console.log("id previousModal after parseInt ", id);
+    //console.log("data2.length ", data2.length);
+    if (id >= 1) {
       id -= 1;
     } else {
       id = 11;
@@ -50,7 +56,7 @@
     console.log("inside nextModal");
     let id2 = parseInt(id);
     id = id2;
-    console.log("data2.length ", data2.length);
+    //console.log("data2.length ", data2.length);
     if (id < (data2.length -1)) {
     console.log("id before math" + id);
         id += 1;
