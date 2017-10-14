@@ -3,22 +3,19 @@
 
 (function (window) {
   let data2 = {};
+  let id;
+  function createModal(e){
+     id = event.target.id;
+     console.log("id inside create modal " + id);
+     modalBody(id);
+      $('#myModal').modal();
+  }
 
   function randomUserData(data, textStatus, jqXHR) {
     data2 = data.results;
-    //console.log("inside randomUserData ", data);
-    //console.log("inside randomUserData ", textStatus);
-    //console.log("inside randomUserData ", jqXHR);
-    //console.log(data.results[4].name.last);
     var addHtml = '';
       data.results.forEach(function (item, index, arr) {
-        // console.log("each thumbnail " + data.results[index].picture.large);
-        // console.log("each first name " + data.results[index].name.first);
-        // console.log("each last name " + data.results[index].name.last);
-        // console.log("each email " + data.results[index].email);
-        // console.log("each city " + data.results[index].location.city);
         addHtml += '<div class="col-md-3 row person" id="' + index + '" data-toggle="modal" data-target="#exampleModal">';
-
         addHtml += '<div><img class="thumbnail" src="' + data.results[index].picture.thumbnail + '"></div>';
         addHtml += '<div>';
         addHtml += '<span class="name">' + data.results[index].name.first + ' ';
@@ -31,19 +28,42 @@
         for(var k = 0; k < data.results.length; k++){
           document.getElementById(k).addEventListener("click", createModal);
         }
+        document.getElementById("prev").addEventListener("click", previousModal);
+        document.getElementById("next").addEventListener("click", nextModal);
   }
 
-  function createModal(e){
-    // console.log(e);
-    // console.log("e id " + event.srcElement.id);
-     let id = event.srcElement.id;
-    // console.log("data inside createModal  ", data2);
-    // console.log("each thumbnail " + data2[id].picture.large);
-    // console.log("each first name " + data2[id].name.first);
-    // console.log("each last name " + data2[id].name.last);
-    // console.log("each email " + data2[id].email);
-    // console.log("each city " + data2[id].location.city);
+  function previousModal() {
+    console.log("inside previousModal");
+    let id2 = parseInt(id);
+    id = id2;
+    console.log("data2.length ", data2.length);
+    if (id >= 1 && id <= (data2.length -1)) {
+      id -= 1;
+    } else {
+      id = 11;
+    }
+    console.log("id after math" + id);
+    modalBody(id);
+  }
 
+  function nextModal() {
+    console.log("inside nextModal");
+    let id2 = parseInt(id);
+    id = id2;
+    console.log("data2.length ", data2.length);
+    if (id < (data2.length -1)) {
+    console.log("id before math" + id);
+        id += 1;
+      } else {
+        id = 0;
+      }
+    console.log("id after math" + id);
+    modalBody(id);
+  }
+
+  function modalBody(id){
+    console.log("inside modalBody");
+    console.log("id inside modal body " + id)
     let birthdayString = data2[id].dob;
     birthdayString = birthdayString.substring(0,10);
 
@@ -61,12 +81,8 @@
     htmlModalBody += '<span>' + data2[id].location.postcode + ' <span>';
     htmlModalBody += '</div>';
     htmlModalBody += '<div class="birthday">Birthday: ' + birthdayString + '</div>';
-    htmlModalBody += '<button type="button" class="btnPage"><</button>';
-    htmlModalBody += '<button type="button" class="btnPage">></button>';
 
     document.getElementById('modalBody').innerHTML = htmlModalBody;
-
-      $('#myModal').modal();
   }
 
   $.ajax({
