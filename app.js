@@ -61,7 +61,9 @@
     htmlModalBody += '<span>' + data2[id].location.postcode + ' <span>';
     htmlModalBody += '</div>';
     htmlModalBody += '<div class="birthday">Birthday: ' + birthdayString + '</div>';
-    // full address and birthday
+    htmlModalBody += '<button type="button" class="btnPage"><</button>';
+    htmlModalBody += '<button type="button" class="btnPage">></button>';
+
     document.getElementById('modalBody').innerHTML = htmlModalBody;
 
       $('#myModal').modal();

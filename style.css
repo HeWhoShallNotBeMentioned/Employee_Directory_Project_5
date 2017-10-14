@@ -16,6 +16,12 @@ body {
   padding: 20px;
   border-radius: 7px;
   font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+  transition: background-color .7s ease-out;
+}
+
+.person:hover {
+   background-color: #00BFFF;
 }
 
 .thumbnail {
@@ -39,4 +45,8 @@ body {
 .birthday {
   font-size: .7em;
   font-weight: lighter;
+}
+
+.btnPage {
+  margin-top: 6px;
 }
