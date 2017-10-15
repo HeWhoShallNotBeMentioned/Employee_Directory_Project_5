@@ -69,7 +69,7 @@
     htmlModalBody += data2[id].name.last + '</span>';
     htmlModalBody += '<div class="email">' + data2[id].email + '</div>';
     htmlModalBody += '<div class="city">' + data2[id].location.city + '</div>';
-    htmlModalBody += '<hr>';
+    //htmlModalBody += '<hr>';
     htmlModalBody += '<div class="phoneNumber">' + data2[id].phone + '</div>';
     htmlModalBody += '<div class="address">';
     htmlModalBody += '<span>' + data2[id].location.street + ', <span>';
