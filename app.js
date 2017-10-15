@@ -4,13 +4,12 @@
 (function (window) {
   let data2 = {};
   let id;
+
   function createModal(e){
      //id = event.target.id;
      //console.log("e.target ", e.target.className);
      let testId = e.target.className;
      id = testId.split(" ")[1];
-     console.log("testId2  ", id);
-     console.log("id inside create modal " + id);
      modalBody(id);
       $('#myModal').modal();
   }
@@ -37,39 +36,29 @@
   }
 
   function previousModal() {
-    console.log("inside previousModal");
-    console.log("id previousModal before parseInt ", id);
     let id2 = parseInt(id);
     id = id2;
-    console.log("id previousModal after parseInt ", id);
-    //console.log("data2.length ", data2.length);
     if (id >= 1) {
       id -= 1;
     } else {
       id = 11;
     }
-    console.log("id after math" + id);
-    modalBody(id);
+      modalBody(id);
   }
 
   function nextModal() {
-    console.log("inside nextModal");
     let id2 = parseInt(id);
     id = id2;
     //console.log("data2.length ", data2.length);
     if (id < (data2.length -1)) {
-    console.log("id before math" + id);
         id += 1;
       } else {
         id = 0;
       }
-    console.log("id after math" + id);
     modalBody(id);
   }
 
   function modalBody(id){
-    console.log("inside modalBody");
-    console.log("id inside modal body " + id)
     let birthdayString = data2[id].dob;
     birthdayString = birthdayString.substring(0,10);
 
@@ -91,14 +80,45 @@
     document.getElementById('modalBody').innerHTML = htmlModalBody;
   }
 
+  function addSearchBox() {
+console.log("Inside Search Box");
+//Create Div to hold search box
+  var searchDiv = document.createElement("div");
+// add class student-search to div
+  searchDiv.setAttribute("class", "employee-search" );
+//create search field
+  var searchInput = document.createElement("input");
+// set attributes for input
+  searchInput.setAttribute("id", "myInput");
+  searchInput.setAttribute("placeholder", "Search for employees...");
+  searchInput.setAttribute("onkeyup", 'eachEmployee()');
+//create button
+  var searchButton = document.createElement("button");
+  searchButton.appendChild(document.createTextNode('Search'));
+  searchButton.setAttribute("class", "btn btn-outline-secondary" );
+//Add search field to div
+  searchDiv.appendChild(searchInput);
+//Add button to div
+  searchDiv.appendChild(searchButton);
+//Add Div
+  var topDiv = document.getElementById('top');
+  console.log("topDiv  ", topDiv);
+//adds the entire searchDiv to the document
+  topDiv.appendChild(searchDiv);
+}
+
+function eachEmployee(){
+
+}
+
   $.ajax({
-        url: "https://randomuser.me/api/?results=12",
+        url: "https://randomuser.me/api/?results=12&AU,CA,NZ,US,IE",
         type: 'get',
         dataType: 'jsonp',
         //jsonpCallback: randomUserData(data, textStatus, jqXHR),
         success: function(data, textStatus, jqXHR) {
-            console.log('success_function');
             randomUserData(data, textStatus, jqXHR);
+            addSearchBox();
         },
         error: function() {
             console.log('error with jsonp request');

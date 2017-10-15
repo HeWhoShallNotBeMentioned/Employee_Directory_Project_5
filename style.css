@@ -21,7 +21,7 @@ body {
 }
 
 .person:hover {
-   background-color: #00BFFF;
+   background-color: #87CEFA;
 }
 
 .thumbnail {
@@ -49,4 +49,13 @@ body {
 
 .btnPage {
   margin-top: 6px;
+}
+
+#myInput{
+  width:230px;
+  margin-right: 10px;
+}
+
+#top {
+  margin-top: 10px;
 }
