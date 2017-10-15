@@ -33,6 +33,7 @@
         }
         document.getElementById("prev").addEventListener("click", previousModal);
         document.getElementById("next").addEventListener("click", nextModal);
+
   }
 
   function previousModal() {
@@ -81,7 +82,7 @@
   }
 
   function addSearchBox() {
-console.log("Inside Search Box");
+//console.log("Inside Search Box");
 //Create Div to hold search box
   var searchDiv = document.createElement("div");
 // add class student-search to div
@@ -91,7 +92,7 @@ console.log("Inside Search Box");
 // set attributes for input
   searchInput.setAttribute("id", "myInput");
   searchInput.setAttribute("placeholder", "Search for employees...");
-  searchInput.setAttribute("onkeyup", 'eachEmployee()');
+  //searchInput.setAttribute("onkeyup", 'eachEmployee()');
 //create button
   var searchButton = document.createElement("button");
   searchButton.appendChild(document.createTextNode('Search'));
@@ -102,23 +103,51 @@ console.log("Inside Search Box");
   searchDiv.appendChild(searchButton);
 //Add Div
   var topDiv = document.getElementById('top');
-  console.log("topDiv  ", topDiv);
+  //console.log("topDiv  ", topDiv);
 //adds the entire searchDiv to the document
   topDiv.appendChild(searchDiv);
 }
 
 function eachEmployee(){
+  console.log("inside eachEmployee");
+  let searchData = data2;
+  console.log("data2 " , data2);
+  let myInput = document.getElementById("myInput");
+  console.log("myInput ", myInput);
+  let filter = myInput.value.toLowerCase();
+  console.log("filter", filter);
+  //let numberOfMatches = 0;
 
+  for (var k = 0; k < searchData.length; k++) {
+    let firstNameSearch = searchData[k].name.first;
+    //console.log("firstNameSearch ", firstNameSearch);
+    let lastNameSearch = searchData[k].name.last;
+    //console.log("lastNameSearch ", lastNameSearch);
+    let usernameSearch = searchData[k].login.username;
+    //console.log("usernameSearch ", usernameSearch);
+    let cardDisplay = document.getElementById(k);
+    //console.log("cardDisplay ", cardDisplay);
+
+
+    if ((firstNameSearch.toLowerCase().indexOf(filter) > -1 || lastNameSearch.toLowerCase().indexOf(filter) > -1 || usernameSearch.toLowerCase().indexOf(filter)) > -1 ) {
+      cardDisplay.style.display = "";
+    } else {
+      cardDisplay.style.display = "none";
+    }
+  }
+  if (filter === ""){
+    randomUserData();
+  }
 }
-
   $.ajax({
-        url: "https://randomuser.me/api/?results=12&AU,CA,NZ,US,IE",
+        url: "https://randomuser.me/api/?results=12&nat=AU,CA,NZ,US,IE",
         type: 'get',
         dataType: 'jsonp',
         //jsonpCallback: randomUserData(data, textStatus, jqXHR),
         success: function(data, textStatus, jqXHR) {
             randomUserData(data, textStatus, jqXHR);
             addSearchBox();
+            document.getElementById('myInput').addEventListener("keyup", eachEmployee);
         },
         error: function() {
             console.log('error with jsonp request');
