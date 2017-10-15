@@ -1,6 +1,4 @@
 
-
-
 (function (window) {
   let data2 = {};
   let id;
@@ -109,24 +107,15 @@
 }
 
 function eachEmployee(){
-  console.log("inside eachEmployee");
   let searchData = data2;
-  console.log("data2 " , data2);
   let myInput = document.getElementById("myInput");
-  console.log("myInput ", myInput);
   let filter = myInput.value.toLowerCase();
-  console.log("filter", filter);
-  //let numberOfMatches = 0;
 
   for (var k = 0; k < searchData.length; k++) {
     let firstNameSearch = searchData[k].name.first;
-    //console.log("firstNameSearch ", firstNameSearch);
     let lastNameSearch = searchData[k].name.last;
-    //console.log("lastNameSearch ", lastNameSearch);
     let usernameSearch = searchData[k].login.username;
-    //console.log("usernameSearch ", usernameSearch);
     let cardDisplay = document.getElementById(k);
-    //console.log("cardDisplay ", cardDisplay);
 
 
     if ((firstNameSearch.toLowerCase().indexOf(filter) > -1 || lastNameSearch.toLowerCase().indexOf(filter) > -1 || usernameSearch.toLowerCase().indexOf(filter)) > -1 ) {
