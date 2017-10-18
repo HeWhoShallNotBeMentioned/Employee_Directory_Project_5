@@ -71,8 +71,10 @@
     htmlModalBody += '<div class="phoneNumber">' + data2[id].phone + '</div>';
     htmlModalBody += '<div class="address">';
     htmlModalBody += '<span>' + data2[id].location.street + ', <span>';
-    htmlModalBody += '<span>' + data2[id].location.state + ' <span>';
-    htmlModalBody += '<span>' + data2[id].location.postcode + ' <span>';
+    htmlModalBody += '<span>' + data2[id].location.state + ', <span>';
+    htmlModalBody += '<span>' + data2[id].nat+ ', <span>';
+    htmlModalBody += '<span>' + data2[id].location.postcode + '<span>';
+
     htmlModalBody += '</div>';
     htmlModalBody += '<div class="birthday">Birthday: ' + birthdayString + '</div>';
 
